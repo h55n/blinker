@@ -171,6 +171,9 @@ To mute a signal, as may be required when testing, the
   with sig.muted():
        ...
 
+Muted blocks can be nested. Exiting an inner block does not unmute the signal
+while an outer block is still active.
+
 
 Anonymous Signals
 -----------------

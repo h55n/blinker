@@ -192,14 +192,19 @@ class Signal:
     def muted(self) -> c.Generator[None, None, None]:
         """A context manager that temporarily disables the signal. No receivers
         will be called if the signal is sent, until the ``with`` block exits.
-        Useful for tests.
+        Useful for tests. Nested blocks keep the signal muted until the outermost
+        block exits, restoring the previous state.
+
+        .. versionchanged:: 1.10
+            Restore the previous muted state when the block exits.
         """
+        was_muted = self.is_muted
         self.is_muted = True
 
         try:
             yield None
         finally:
-            self.is_muted = False
+            self.is_muted = was_muted
 
     def send(
         self,
