@@ -4,7 +4,7 @@ Version 1.10.0
 Unreleased
 
 -   Restore the previous state when exiting ``Signal.muted()``, so nested
-    blocks do not unmute the signal before the outer block exits.
+    blocks do not unmute the signal before the outer block exits. :issue:`194`
 
 
 Version 1.9.0
